@@ -1,0 +1,111 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Home - My Django Practice Site
+{% endblock %}
+
+{% block css %}
+<style>
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Welcome container */
+.welcome-container {
+    max-width: 800px;
+    margin: 60px auto 40px auto;
+    padding: 40px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Welcome heading */
+.welcome-container h1 {
+    font-size: 36px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+/* Welcome subtext */
+.welcome-container p {
+    font-size: 20px;
+    color: #555555;
+    font-weight: 600;
+}
+
+/* Individual quote boxes */
+.quote-box {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px 20px;
+    background-color: #17a2b8;
+    color: white;
+    border-radius: 12px;
+    font-style: italic;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 20px;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333333;
+    color: #f4f7f8;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 16px;
+    margin-top: 60px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+footer a {
+    color: #17a2b8;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Welcome Section -->
+<div class="welcome-container">
+    <h1>Welcome to my domain</h1>
+    <p>Here everything is decided by me 💀💀</p>
+</div>
+
+<!-- Quote 1 -->
+<div class="quote-box" style="margin-top: 20px;">
+    "The best way to predict the future is to create it." – Peter Drucker
+</div>
+
+<!-- Some filler content / spacing -->
+<div style="height: 40px;"></div>
+
+<!-- Quote 2 -->
+<div class="quote-box" style="background-color: #ffc107; color: #212529;">
+    "Code is like humor. When you have to explain it, it’s bad." – Cory House
+</div>
+
+<div style="height: 40px;"></div>
+
+<!-- Quote 3 -->
+<div class="quote-box" style="background-color: #28a745;">
+    "Simplicity is the soul of efficiency." – Austin Freeman
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 My Django Practice Site | Designed with ❤️ by Ronish Bohora</p>
+</footer>
+{% endblock %}

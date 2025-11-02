@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Update Post
+{% endblock %}
+
+{% block css %}
+<style>
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9fafb;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    margin: 0;
+}
+
+/* Form container */
+form {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+/* Form heading */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333333;
+}
+
+/* Labels styling */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555555;
+}
+
+/* Input and textarea styling */
+form input, form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #ffc107;  /* Yellow accent for edit page */
+    outline: none;
+    box-shadow: 0 0 5px rgba(255,193,7,0.3);
+}
+
+/* Submit button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffc107; /* Yellow button for update */
+    border: none;
+    border-radius: 8px;
+    color: #212529;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #e0a800;
+}
+
+/* Cancel link styling */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #6c757d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Django form error styling (if any) */
+ul.errorlist {
+    color: red;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Edit Post</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <label>Title:</label>
+    <input type="text" name="title" value="{{ post.title }}" required>
+
+    <label>Content:</label>
+    <textarea name="content" rows="5" required>{{ post.content }}</textarea>
+
+    <label>Author:</label>
+    <input type="text" name="author" value="{{ post.author }}" required>
+
+    <button type="submit">Update Post</button>
+</form>
+
+<a href="{% url 'posts:post_list' %}">Cancel</a>
+{% endblock %}

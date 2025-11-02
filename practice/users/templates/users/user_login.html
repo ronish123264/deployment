@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block title %}User Login{% endblock %}
+
+{% block css %}
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+form {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333333;
+}
+form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+form input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+button.form_submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button.form_submit:hover {
+    background-color: #0056b3;
+}
+ul.errorlist {
+    color: red;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+.signup-option {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+.signup-option a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+.signup-option a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>User Login</h1>
+<form method="post" action="{% url 'users:user_login' %}">
+    {% csrf_token %}
+    {{ form }}
+    <button class="form_submit" type="submit">Login</button>
+</form>
+
+<div class="signup-option">
+    Don't have an account?
+    <a href="{% url 'users:user_register' %}">Sign up</a>
+</div>
+{% endblock %}
