@@ -1,21 +1,15 @@
-{% extends 'layout.html' %}
-{% load static %}
-
-{% block title %}
-Contact - My Django Practice Site
-{% endblock %}
-
-{% block css %}
+{% extends 'layout.html' %} {% load static %} {% block title %} Contact - My
+Django Practice Site {% endblock %} {% block css %}
 <style>
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f7f8;
     margin: 0;
     padding: 0;
-}
+  }
 
-/* Contact container */
-.contact-container {
+  /* Contact container */
+  .contact-container {
     max-width: 600px;
     margin: 80px auto 40px auto;
     background: #ffffff;
@@ -23,33 +17,33 @@ body {
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-}
+  }
 
-.contact-container:hover {
+  .contact-container:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
-}
+  }
 
-/* Title */
-.contact-title {
+  /* Title */
+  .contact-title {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     color: #333;
     margin-bottom: 25px;
-}
+  }
 
-/* Form labels */
-.contact-form label {
+  /* Form labels */
+  .contact-form label {
     display: block;
     font-weight: 600;
     color: #444;
     margin-top: 15px;
-}
+  }
 
-/* Form inputs */
-.contact-form input,
-.contact-form textarea {
+  /* Form inputs */
+  .contact-form input,
+  .contact-form textarea {
     width: 100%;
     padding: 12px 15px;
     margin-top: 6px;
@@ -58,17 +52,17 @@ body {
     font-size: 15px;
     background-color: #fafafa;
     transition: border-color 0.3s ease, background 0.3s ease;
-}
+  }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
+  .contact-form input:focus,
+  .contact-form textarea:focus {
     outline: none;
     border-color: #007bff;
     background-color: #fff;
-}
+  }
 
-/* Submit button */
-.contact-form button {
+  /* Submit button */
+  .contact-form button {
     width: 100%;
     padding: 14px;
     margin-top: 25px;
@@ -80,32 +74,32 @@ body {
     cursor: pointer;
     font-weight: 600;
     transition: background 0.3s ease;
-}
+  }
 
-.contact-form button:hover {
+  .contact-form button:hover {
     background: linear-gradient(to right, #0056b3, #007bff);
-}
+  }
 
-/* Contact info */
-.contact-info {
+  /* Contact info */
+  .contact-info {
     text-align: center;
     margin-top: 30px;
     color: #666;
     font-size: 15px;
-}
+  }
 
-.contact-info a {
+  .contact-info a {
     color: #007bff;
     text-decoration: none;
     font-weight: 600;
-}
+  }
 
-.contact-info a:hover {
+  .contact-info a:hover {
     text-decoration: underline;
-}
+  }
 
-/* Footer styling */
-footer {
+  /* Footer styling */
+  footer {
     background-color: #333333;
     color: #f4f7f8;
     text-align: center;
@@ -114,44 +108,78 @@ footer {
     margin-top: 60px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-}
+  }
 
-footer a {
+  footer a {
     color: #17a2b8;
     text-decoration: none;
     transition: 0.3s;
-}
+  }
 
-footer a:hover {
+  footer a:hover {
     text-decoration: underline;
-}
+  }
 </style>
-{% endblock %}
-
-{% block content %}
-<div class="contact-container">
-    <h2 class="contact-title">Get in Touch</h2>
-    <form class="contact-form" method="post">
-        {% csrf_token %}
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name..." required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="Your email address..." required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-        <button type="submit">Send Message</button>
-    </form>
-
-    <div class="contact-info">
-        <p>Or reach us directly at <a href="mailto:ronish000@gmail.com">ronish000@gmail.com</a></p>
-    </div>
+{% endblock %} {% block content %}
+<!-- Success / error message -->
+{% if success == True %}
+<p
+  style="
+    text-align: center;
+    color: green;
+    font-weight: 600;
+    margin-bottom: 15px;
+  "
+>
+  Thank you {{ name }}! Your message has been sent successfully.
+</p>
+{% elif success == False %}
+<p
+  style="text-align: center; color: red; font-weight: 600; margin-bottom: 15px"
+>
+  Oops! Something went wrong. Please try again later.
+</p>
+{% endif %}
+<form class="contact-form" method="post">
+  {% csrf_token %} <label for="name">Full Name</label>
+  <input
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Your full name..."
+    value="{{ request.POST.name }}"
+    required
+  />
+  <label for="email">Email Address</label>
+  <input
+    type="email"
+    id="email"
+    name="email"
+    placeholder="Your email address..."
+    value="{{ request.POST.email }}"
+    required
+  />
+  <label for="message">Message</label>
+  <textarea
+    id="message"
+    name="message"
+    rows="5"
+    placeholder="Write your message here..."
+    required
+  >
+{{ request.POST.message }}</textarea
+  >
+  <button type="submit">Send Message</button>
+</form>
+<div class="contact-info">
+  <p>
+    Or reach us directly at
+    <a href="mailto:ronish000@gmail.com">ronish000@gmail.com</a>
+  </p>
 </div>
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2025 My Django Practice Site | Designed with ❤️ by Ronish Bohora</p>
+  <p>&copy; 2025 My Django Practice Site | Designed with ❤️ by Ronish Bohora</p>
 </footer>
 {% endblock %}
